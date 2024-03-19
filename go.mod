@@ -1,4 +1,4 @@
-module dict
+module github.com/periaate/dict
 
 go 1.22.0
 

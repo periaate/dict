@@ -1,9 +1,10 @@
 package main
 
 import (
-	"dict"
 	"fmt"
 	"os"
+
+	"github.com/periaate/dict"
 )
 
 func main() {

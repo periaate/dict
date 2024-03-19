@@ -1,10 +1,11 @@
 package main
 
 import (
-	"dict"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/periaate/dict"
 
 	_ "embed"
 )
