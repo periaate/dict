@@ -49,3 +49,25 @@ func ParseDict(b []byte, fn FmtFunc) (dm DictMap, err error) {
 	}
 	return
 }
+
+func QueryRaw(b []byte, term string, fn FmtFunc) (res string) {
+	if fn == nil {
+		fn = func(word string, pos string, def string) string {
+			return fmt.Sprintf("%v (%v) — %v", word, pos, def)
+		}
+	}
+
+	js := fastjson.MustParseBytes(b)
+	arr, err := js.Array()
+	if err != nil {
+		return
+	}
+
+	for _, v := range arr {
+		word := string(v.GetStringBytes("word"))
+		if strings.ToLower(string(word)) == term {
+			res += fn(word, string(v.GetStringBytes("pos")), string(v.GetStringBytes("meaning"))) + "\n"
+		}
+	}
+	return
+}

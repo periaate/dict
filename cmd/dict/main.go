@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/periaate/dict"
@@ -18,11 +17,5 @@ func main() {
 		fmt.Println("Usage: dict <word>")
 		os.Exit(1)
 	}
-
-	dictMap, err := dict.ParseDict(rawDict, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(dictMap.Query(os.Args[1]))
+	print(dict.QueryRaw(rawDict, os.Args[1], nil))
 }
